@@ -1,0 +1,16 @@
+<ActionBar title="Groceries"></ActionBar>
+
+<GridLayout rows="auto, *">
+
+  <GridLayout row="0" columns="*, auto" class="add-bar">
+    <TextField #groceryTextField hint="Enter a grocery item" col="0"></TextField>
+    <Image src="~/images/add.png" col="1"></Image>
+  </GridLayout>
+
+  <RadListView row="1" [items]="groceryList">
+    <ng-template let-item="item">
+      <Label [text]="item.name" class="p-15"></Label>
+    </ng-template>
+  </RadListView>
+
+</GridLayout>
