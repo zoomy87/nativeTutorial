@@ -12,6 +12,20 @@ export class GroceryService {
 
     constructor(private http: Http) { }
 
+    add(name: string) {
+        return this.http.post(
+            this.baseUrl,
+            JSON.stringify({ Name: name }),
+            { headers: this.getCommonHeaders() }
+        ).pipe(
+            map(res => res.json()),
+            map(data => {
+                return new Grocery(data._id, name);
+            }),
+            catchError(this.handleErrors)
+        );
+    }
+
     load() {
         // Kinvey-specific syntax to sort the groceries by last modified time. Don’t worry about the details here.
         let params = new URLSearchParams();
@@ -43,5 +57,15 @@ export class GroceryService {
     handleErrors(error: Response) {
         console.log(JSON.stringify(error.json()));
         return Observable.throw(error);
+    }
+
+    delete(id: string) {
+        return this.http.delete(
+            this.baseUrl + "/" + id,
+            { headers: this.getCommonHeaders() }
+        ).pipe(
+            map(res => res.json()),
+            catchError (this.handleErrors)
+        );
     }
 }

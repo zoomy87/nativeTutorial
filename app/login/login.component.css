@@ -2,12 +2,13 @@ FlexboxLayout {
   justify-content: center;
   align-items: center;
   background-size: cover;
-  background-image: url("~/images/background.jpg");
+  background-image: url("~/images/socialBackground.jpg");
+  background-size: auto;
 }
 StackLayout {
   width: 300;
   padding: 10 16;
-  background-color: #f0f0f0;
+  background-color: #f70707;
 }
 Image {
   margin-bottom: 20;
